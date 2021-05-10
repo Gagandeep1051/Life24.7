@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.AddAlertFragment">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:text="Set alarm"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+
+    <EditText
+        android:id="@+id/NameClass"
+        android:layout_width="408dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="73dp"
+        android:layout_marginBottom="-7dp"
+        android:ems="10"
+        android:hint="Class name"
+        tools:text="Name" />
+
+    <EditText
+        android:id="@+id/DueTime"
+        android:layout_width="410dp"
+        android:layout_height="61dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="124dp"
+        android:layout_marginBottom="5dp"
+        android:ems="10"
+        android:hint="Due date"
+        tools:text="Name" />
+
+    <EditText
+        android:id="@+id/etDescription"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_marginTop="183dp"
+        android:ems="10"
+        android:hint="Assignment description and notes"
+        tools:text="Description " />
+
+    <Button
+        android:id="@+id/Submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etDescription"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="5dp"
+        android:text="submit" />
+
+
+</RelativeLayout>
