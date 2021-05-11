@@ -49,6 +49,21 @@ public class AddAlertFragment extends Fragment {
     public AddAlertFragment() {
         // Required empty public constructor
     }
+
+
+    public static int getNameClass() {
+        return(getNameClass());
+    }
+
+    public static int getetDescription() {
+        return(getetDescription());
+    }
+
+    public static int getDueTime() {
+        return(getDueTime());
+    }
+
+
     public interface OnClickListener {
         void onItemClicked(int position);
     }
@@ -78,23 +93,22 @@ public class AddAlertFragment extends Fragment {
                 String description = etDescription.getText().toString();
 
                 // add item to the model
-                AbstractSequentialList<Object> items;
                 items.add(classN);
                 items.add(Time);
                 items.add(description);
 
                 // notify adapter that an item is inserted
-                AlertAdapter.notifyItemInserted(items.size() - 1);
+                //AlertAdapter.notifyItemInserted(items.size() - 1);
                 NameClass.setText("");
                 DueTime.setText("");
                 etDescription.setText("");
 
-                saveItems();
+                //saveItems();
             }
 
 
-
-    }
+        });
+    };
 
 
 
