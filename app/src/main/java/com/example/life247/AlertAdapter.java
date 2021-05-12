@@ -62,14 +62,14 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
             super(itemView);
             NameClass=itemView.findViewById(R.id.NameClass);
             etDescription=itemView.findViewById(R.id.etDescription);
-            DueTime=itemView.findViewById(R.id.DueTime);
+            //DueTime=itemView.findViewById(R.id.DueTime);
             rvalert=itemView.findViewById(R.id.rvalert);
         }
 
         public void bind(List<String> item) {
             NameClass.setText(AddAlertFragment.getNameClass());
             etDescription.setText(AddAlertFragment.getetDescription());
-            DueTime.setText(AddAlertFragment.getDueTime());
+            //DueTime.setText(AddAlertFragment.getDueTime());
 
 
             rvalert.setOnClickListener(new View.OnClickListener() {

@@ -1,10 +1,13 @@
 package com.example.life247.Fragment;
 
+import android.app.DatePickerDialog;
+ import android.app.Activity;
 import android.content.ComponentCallbacks2;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -20,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
@@ -31,7 +35,10 @@ import android.widget.Toast;
 import com.example.life247.AlertAdapter;
 import com.example.life247.R;
 
+import java.text.BreakIterator;
 import java.util.AbstractSequentialList;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -41,9 +48,15 @@ public class AddAlertFragment extends Fragment {
     private EditText NameClass;
     private EditText etDescription;
     private EditText DueTime;
-    private Button Submit;
+    private Button SSubmit;
+    private Button Meds;
+    private TextView alarmDate;
+    private DatePickerDialog.OnDateSetListener DDateSetListener;
+    private TextView alarmTime;
 
-    List<String> items;
+
+    List<String> items = new ArrayList<>();;
+    private Object RadialPickerLayout;
 
 
     public AddAlertFragment() {
@@ -82,10 +95,38 @@ public class AddAlertFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         NameClass=view.findViewById(R.id.NameClass);
         etDescription=view.findViewById(R.id.etDescription);
-        DueTime=view.findViewById(R.id.DueTime);
-        Submit=view.findViewById(R.id.Submit);
+        //DueTime=view.findViewById(R.id.DueTime);
+        SSubmit=view.findViewById(R.id.SSubmit);
+        Meds=view.findViewById(R.id.Meds);
+        alarmDate=view.findViewById(R.id.alarmDate);
 
-        Submit.setOnClickListener(new View.OnClickListener() {
+        alarmDate.setOnClickListener(new View.OnClickListener() {
+            //@RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onClick(View v) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(getContext(), android.R.style.Theme,DDateSetListener,year,month,day);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+        DDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month= month + 1;
+                String date = month + "/" + dayOfMonth + "/" + year;
+                alarmDate.setText(date);
+
+            }
+        };
+
+
+
+        SSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String classN = NameClass.getText().toString();
