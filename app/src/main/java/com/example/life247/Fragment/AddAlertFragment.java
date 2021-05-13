@@ -1,44 +1,28 @@
 package com.example.life247.Fragment;
 
 import android.app.DatePickerDialog;
- import android.app.Activity;
-import android.content.ComponentCallbacks2;
-import android.content.Context;
-import android.content.res.Configuration;
-import android.content.res.Resources;
+import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.fragment.app.Fragment;
-
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Filter;
-import android.widget.Filterable;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.ThemedSpinnerAdapter;
-import android.widget.Toast;
+import android.widget.TimePicker;
 
-import com.example.life247.AlertAdapter;
+import androidx.fragment.app.Fragment;
+
 import com.example.life247.R;
 
-import java.text.BreakIterator;
-import java.util.AbstractSequentialList;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -53,6 +37,7 @@ public class AddAlertFragment extends Fragment {
     private TextView alarmDate;
     private DatePickerDialog.OnDateSetListener DDateSetListener;
     private TextView alarmTime;
+    int tHour, minute;
 
 
     List<String> items = new ArrayList<>();;
@@ -99,6 +84,26 @@ public class AddAlertFragment extends Fragment {
         SSubmit=view.findViewById(R.id.SSubmit);
         Meds=view.findViewById(R.id.Meds);
         alarmDate=view.findViewById(R.id.alarmDate);
+        alarmTime=view.findViewById(R.id.alarmTime);
+
+        alarmTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                tHour = hourOfDay;
+                                minute = minute;
+                                Calendar cal = Calendar.getInstance();
+                                cal.set(0, 0, 0, tHour, minute);
+                                String time = tHour + ":" + minute;
+                                alarmTime.setText(time);
+                            }
+                        },24,0,true
+                );
+                timePickerDialog.show();
+            }
+        });
 
         alarmDate.setOnClickListener(new View.OnClickListener() {
             //@RequiresApi(api = Build.VERSION_CODES.N)
@@ -123,6 +128,7 @@ public class AddAlertFragment extends Fragment {
 
             }
         };
+
 
 
 
