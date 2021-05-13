@@ -18,15 +18,12 @@ import androidx.fragment.app.Fragment;
 
 import com.example.life247.R;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 
-public class AddAlertFragment extends Fragment {
+public class AddAlertFragment extends Fragment implements View.OnClickListener {
     private TextView ClassName;
     private TextView Time;
     private EditText NameClass;
@@ -40,7 +37,7 @@ public class AddAlertFragment extends Fragment {
     int tHour, minute;
 
 
-    List<String> items = new ArrayList<>();;
+    List<EditText> Alert = new ArrayList<EditText>();;
     private Object RadialPickerLayout;
 
 
@@ -59,6 +56,32 @@ public class AddAlertFragment extends Fragment {
 
     public static int getDueTime() {
         return(getDueTime());
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        SSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String classN =  NameClass.getText().toString();
+                String DueTime =  DueTime.getText().toString();
+                String description =  etDescription.getText().toString();
+
+                // add item to the model
+                Alert.add(classN);
+                Alert.add(DueTime);
+                Alert.add(description);
+
+                // notify adapter that an item is inserted
+                //AlertAdapter.notifyItemInserted(items.size() - 1);
+                NameClass.setText("");
+                DueTime.setText("");
+                etDescription.setText("");
+
+                //saveItems();
+            }
+
     }
 
 
@@ -85,6 +108,11 @@ public class AddAlertFragment extends Fragment {
         Meds=view.findViewById(R.id.Meds);
         alarmDate=view.findViewById(R.id.alarmDate);
         alarmTime=view.findViewById(R.id.alarmTime);
+
+
+        //AlertAdapter alertAdapter = new AlertAdapter(Alert);
+
+
 
         alarmTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,31 +159,32 @@ public class AddAlertFragment extends Fragment {
 
 
 
-
-        SSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String classN = NameClass.getText().toString();
-                String Time = DueTime.getText().toString();
-                String description = etDescription.getText().toString();
-
-                // add item to the model
-                items.add(classN);
-                items.add(Time);
-                items.add(description);
-
-                // notify adapter that an item is inserted
-                //AlertAdapter.notifyItemInserted(items.size() - 1);
-                NameClass.setText("");
-                DueTime.setText("");
-                etDescription.setText("");
-
-                //saveItems();
-            }
+//
+//        SSubmit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String classN =  NameClass.getText().toString();
+//                String DueTime =  DueTime.getText().toString();
+//                String description =  etDescription.getText().toString();
+//
+//                // add item to the model
+//                Alert.add(classN);
+//                Alert.add(DueTime);
+//                Alert.add(description);
+//
+//                // notify adapter that an item is inserted
+//                //AlertAdapter.notifyItemInserted(items.size() - 1);
+//                NameClass.setText("");
+//                DueTime.intern("");
+//                etDescription.setText("");
+//
+//                //saveItems();
+//            }
 
 
         });
-    };
+    }
+
 
 
 

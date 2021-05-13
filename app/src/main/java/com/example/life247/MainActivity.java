@@ -11,6 +11,7 @@ import android.view.View;
 
 import com.example.life247.Fragment.AddAlertFragment;
 import com.example.life247.Fragment.AssignmentFragment;
+import com.example.life247.Fragment.MedFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,9 +38,9 @@ public class MainActivity extends AppCompatActivity {
                         fragment= new AddAlertFragment();
                         break;
                     case R.id.Meds:
-                        fragment= new AddAlertFragment();
+                        fragment= new MedFragment();
                     default:
-                        fragment= new AddAlertFragment();
+                        fragment= new AssignmentFragment();
                         break;
                 }
                 fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
